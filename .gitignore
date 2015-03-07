@@ -6,4 +6,4 @@ tmp
 .DS_Store
 .idea
 app/**/*.js
-app/css
+bundle.css
