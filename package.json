@@ -22,11 +22,11 @@
     "start": "npm run watch & http-server -a localhost -p 8000 -c-1",
 
     "watch-coffee": "coffee --watch --compile --output app src/coffee",
-    "watch-less": "catw -c 'lessc -' 'src/less/*.less' -o app/css/bundle.css -v",
+    "watch-less": "catw -c 'lessc -' 'src/less/*.less' -o app/bundle.css -v",
     "watch": "npm run watch-coffee & npm run watch-less",
 
     "compile-coffee": "coffee --compile --output app src/coffee",
-    "compile-less": "lessc src/less/*.less app/css/bundle.css",
+    "compile-less": "lessc src/less/*.less app/bundle.css",
     "compile": "npm run compile-coffee && npm run compile-less",
 
     "clean": "rm -rf app/vendor && rm -rf node_modules && find app -name '*.js' -o -name '*.css' -type f | xargs rm -f",
