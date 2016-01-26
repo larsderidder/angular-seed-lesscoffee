@@ -7,7 +7,8 @@
   "license": "MIT",
   "devDependencies": {
     "karma": "~0.10",
-    "coffee-script": "=1.9.0",
+    "coffee-script": "^1.9.0",
+    "less": "^2.4.0",
     "catw": "^0.2.0",
     "protractor": "^1.1.1",
     "http-server": "^0.6.1",
@@ -16,17 +17,17 @@
     "karma-junit-reporter": "^0.2.2"
   },
   "scripts": {
-    "postinstall": "bower install",
+    "postinstall": "bower install && npm run compile",
 
     "prestart": "npm install",
-    "start": "npm run watch & http-server -a localhost -p 8000 -c-1",
+    "start": "npm run watch & http-server app -a localhost -p 8000 -c-1",
 
-    "watch-coffee": "coffee --watch --compile --output app src/coffee",
-    "watch-less": "catw -c 'lessc -' 'src/less/*.less' -o app/css/bundle.css -v",
+    "watch-coffee": "mkdir -p app/dist/js && coffee --watch --compile --output app/dist/js/ src/coffee",
+    "watch-less": "mkdir -p app/dist/css && catw -c 'lessc -' 'src/less/*.less' -o app/dist/css/bundle.css -v",
     "watch": "npm run watch-coffee & npm run watch-less",
 
-    "compile-coffee": "coffee --compile --output app src/coffee",
-    "compile-less": "lessc src/less/*.less app/css/bundle.css",
+    "compile-coffee": "mkdir -p app/dist/js && coffee --compile --output app/dist/js/ src/coffee",
+    "compile-less": "mkdir -p app/dist/css && lessc src/less/*.less app/dist/css/bundle.css",
     "compile": "npm run compile-coffee && npm run compile-less",
 
     "clean": "rm -rf app/vendor && rm -rf node_modules && find app -name '*.js' -o -name '*.css' -type f | xargs rm -f",
